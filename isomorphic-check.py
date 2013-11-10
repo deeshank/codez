@@ -5,7 +5,7 @@ b="cantab"
 
 cache=[]
 lcache=[]
-map_cache=[]
+char_cache=[]
 res_neg="Not Isomorphic"
 res_pos="Isomorphic" 
 
@@ -13,14 +13,13 @@ if len(a)!=len(b):
     print res_neg
 
 for i,x in enumerate(b):
+    if a[i] in char_cache:
+        continue
     if x in lcache:
         cache.append((i,x))
         continue
     lcache.append(x)
     tmp=''
-    if (a[i],x) in map_cache:
-        continue
-    map_cache.append((a[i],x))
     for j,y in enumerate(a):
         if (j,y) not in cache:
             if a[i]==y:
@@ -31,6 +30,7 @@ for i,x in enumerate(b):
         else:
             tmp+=y
     a=tmp
+    char_cache.append(a[i])
 if a==b:
     print res_pos
 else:
