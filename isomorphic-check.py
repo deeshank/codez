@@ -5,7 +5,7 @@ b="cantab"
 
 cache=[]
 lcache=[]
-converted_cache=[]
+map_cache=[]
 res_neg="Not Isomorphic"
 res_pos="Isomorphic" 
 
@@ -18,9 +18,9 @@ for i,x in enumerate(b):
         continue
     lcache.append(x)
     tmp=''
-    if a[i] in converted_cache:
+    if (a[i],x) in map_cache:
         continue
-    converted_cache.append(a[i])
+    map_cache.append((a[i],x))
     for j,y in enumerate(a):
         if (j,y) not in cache:
             if a[i]==y:
